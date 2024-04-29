@@ -38,13 +38,4 @@ public class PlayerShooting : MonoBehaviour
         Destroy(projectile, projectileLifetime);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        // Check if the projectile collided with an object tagged as "Enemy"
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            // Destroy the enemy object
-            Destroy(other.gameObject);
-        }
-    }
 }

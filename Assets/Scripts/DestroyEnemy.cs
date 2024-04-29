@@ -1,20 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyEnemy : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
+    public int damage = 20; // Damage inflicted by the bullet
+
+    // Called when the bullet collides with another object
     void OnTriggerEnter2D(Collider2D other)
     {
-
-        //Debug.Log("it has hit");
-        // Check if the projectile collided with an object tagged as "Enemy"
-        if (other.gameObject.CompareTag("Enemy"))
+        // Check if the object collided with is an enemy
+        EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+        if (enemyHealth != null)
         {
-            //Debug.Log("it has destroyed");
+            // If it's an enemy, reduce its health by the bullet's damage
+            enemyHealth.TakeDamage(damage);
 
-            // Destroy the enemy object
-            Destroy(other.gameObject);
+            // Destroy the bullet
+            Destroy(gameObject);
         }
     }
 }
